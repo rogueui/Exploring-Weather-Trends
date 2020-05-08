@@ -1,0 +1,15 @@
+ALTER TABLE city_data RENAME COLUMN avg_temp TO city_avg_temp;
+ALTER TABLE global_data RENAME COLUMN avg_temp TO global_avg_temp;
+SELECT global_data.year,global_data.global_avg_temp,city_data.city_avg_temp
+FROM city_data
+JOIN  global_data ON city_data.year = global_data.year
+WHERE city_data.city = 'Bangalore'
+AND city_avg_temp IS NOT NULL;
+
+
+
+SELECT c.year,c.avg_temp AS city_avg_temp,g.avg_temp AS global_avg_temp
+FROM city_data c
+JOIN global_data g ON c.year = g.year
+WHERE c.city = 'Bangalore'
+AND c.avg_temp IS NOT NULL;
